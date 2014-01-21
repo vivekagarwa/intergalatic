@@ -1,0 +1,24 @@
+package com.thoughtworks.roman;
+
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+
+message RomanString {
+	repeated CompositeRomanLiteral composite = 1; 
+}
+
+message CompositeRomanLiteral {
+	optional RomanLiteral roman = 1;
+	optional RomanLiteral toSubtract = 2;
+}
+
+enum RomanLiteral {
+	O = 0;
+	I = 1;
+	V = 2;
+	X = 3;
+	L = 4;
+	C = 5;
+	D = 6;
+	M = 7;
+}

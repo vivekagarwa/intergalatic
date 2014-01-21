@@ -1,0 +1,18 @@
+package com.thoughtworks.commodity;
+
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+
+import "commodityPriceFile.proto";
+import "intergalaticUnitFile.proto";
+
+message CommodityPriceQuery {
+	optional Commodity commodity = 1;
+	optional com.thoughtworks.intergalaticUnit.IntergalaticString units = 2;
+}
+
+message CommodityPriceResponse {
+	optional Commodity commodity = 1;
+	optional com.thoughtworks.intergalaticUnit.IntergalaticString units = 2;
+	optional double totalPrice = 3;
+}

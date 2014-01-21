@@ -1,0 +1,15 @@
+package com.thoughtworks.intergalaticUnit;
+
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+
+import "intergalaticUnitFile.proto";
+
+message IntergalaticUnitQuery {
+	optional IntergalaticString units = 1;
+}
+
+message IntergalaticUnitResponse {
+	optional IntergalaticString units = 1;
+	optional int32 unitsDecimal = 2;
+}

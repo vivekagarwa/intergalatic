@@ -1,0 +1,13 @@
+package com.thoughtworks.intergalaticUnit;
+
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+
+
+message IntergalaticString {
+	repeated IntergalaticLiteral literal = 1; 
+}
+
+message IntergalaticLiteral {
+	optional string name = 1;
+}
