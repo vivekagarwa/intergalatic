@@ -11,7 +11,7 @@ public class IntergalaticString {
 
   private final List<IntergalaticLiteral> m_literalList;
 
-  public IntergalaticString(List<IntergalaticLiteral> literalList) {
+  IntergalaticString(List<IntergalaticLiteral> literalList) {
     m_literalList = literalList;
   }
 
