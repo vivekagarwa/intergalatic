@@ -38,13 +38,7 @@ public class IntergalaticUnitQueryParser {
     if (!parser.isCompletlyCovered()) {
       return null;
     }
-    return create(intergalaticString);
-  }
-  
-  private IntergalaticUnitQuery create(IntergalaticString intergalaticString) {
-    IntergalaticUnitQuery.Builder builder = IntergalaticUnitQuery.newBuilder();
-    builder.setUnits(intergalaticString);
-    return builder.build();
+    return new IntergalaticUnitQuery(intergalaticString);
   }
 
 }

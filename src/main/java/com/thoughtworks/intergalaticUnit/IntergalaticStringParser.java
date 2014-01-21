@@ -35,16 +35,14 @@ public class IntergalaticStringParser {
     if (intergalaticString == null) {
       return null;
     }
-    return new Pair<IntergalaticString, Integer>(intergalaticString, i-1);
+    return new Pair<IntergalaticString, Integer>(intergalaticString, i - 1);
   }
 
   private IntergalaticString create(List<IntergalaticLiteral> intergalaticLiteralList) {
-    IntergalaticString.Builder builder = IntergalaticString.newBuilder();
-    builder.addAllLiteral(intergalaticLiteralList);
-    IntergalaticString intergalaticString = builder.build();
+    IntergalaticString intergalaticString = new IntergalaticString(intergalaticLiteralList);
     if (m_intergalaticStringVerifier.isVerified(intergalaticString)) {
       return intergalaticString;
-    } 
+    }
     return null;
   }
 }

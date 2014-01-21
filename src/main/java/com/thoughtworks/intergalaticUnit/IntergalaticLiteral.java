@@ -7,7 +7,7 @@ public class IntergalaticLiteral {
 
   private final String m_name;
 
-  private IntergalaticLiteral(String name) {
+  public IntergalaticLiteral(String name) {
     m_name = name;
   }
 
@@ -29,28 +29,6 @@ public class IntergalaticLiteral {
 
     IntergalaticLiteral rhs = (IntergalaticLiteral) obj;
     return new EqualsBuilder().append(m_name, rhs.m_name).isEquals();
-  }
-
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  public static class Builder {
-
-    private String m_name_;
-
-    private Builder() {
-    }
-
-    public Builder setName(String name) {
-      m_name_ = name;
-      return this;
-    }
-
-    public IntergalaticLiteral build() {
-      return new IntergalaticLiteral(m_name_);
-    }
-
   }
 
 }

@@ -33,45 +33,24 @@ public class RomanParserAndValidator {
         ++consequtive;
         RulesConfig rule = RulesConfig.getApplicableRule(roman);
         Preconditions.checkState(consequtive <= rule.getConsequtive());
-        list.add(createCompositeLiteral(roman));
+        list.add(new CompositeRomanLiteral(roman));
       } else if (order < 0) {
         // normal order
         consequtive = 1;
         prevRoman = roman;
-        list.add(createCompositeLiteral(roman));
+        list.add(new CompositeRomanLiteral(roman));
       } else {
         // subtract
         RulesConfig rule = RulesConfig.getApplicableRule(prevRoman);
         Preconditions.checkState(consequtive == 1);
         Preconditions.checkState(rule.getAllowedSubtractFrom().contains(roman));
         list.remove(list.size() - 1);
-        list.add(createCompositeLiteral(prevRoman, roman));
+        list.add(new CompositeRomanLiteral(roman, prevRoman));
         prevRoman = RomanLiteral.getSmaller(prevRoman);
         consequtive = 0;
       }
     }
-    return create(list);
-  }
-
-  private RomanString create(List<CompositeRomanLiteral> list) {
-    RomanString.Builder builder = RomanString.newBuilder();
-    builder.addAllComposite(list);
-    return builder.build();
-  }
-
-  private CompositeRomanLiteral createCompositeLiteral(RomanLiteral prevRoman,
-          RomanLiteral roman) {
-    CompositeRomanLiteral.Builder builder = CompositeRomanLiteral.newBuilder();
-    builder.setRoman(roman);
-    builder.setToSubtract(prevRoman);
-    return builder.build();
-  }
-
-  private CompositeRomanLiteral createCompositeLiteral(RomanLiteral roman) {
-    CompositeRomanLiteral.Builder builder = CompositeRomanLiteral.newBuilder();
-    builder.setRoman(roman);
-    builder.setToSubtract(RomanLiteral.O);
-    return builder.build();
+    return new RomanString(list);
   }
 
 }

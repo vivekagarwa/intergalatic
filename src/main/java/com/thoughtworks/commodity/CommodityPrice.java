@@ -8,7 +8,7 @@ public class CommodityPrice {
   private final Commodity m_commodity;
   private final double m_price;
 
-  private CommodityPrice(Commodity commodity, double price) {
+  public CommodityPrice(Commodity commodity, double price) {
     m_commodity = commodity;
     m_price = price;
   }
@@ -36,34 +36,6 @@ public class CommodityPrice {
     CommodityPrice rhs = (CommodityPrice) obj;
     return new EqualsBuilder().append(m_commodity, rhs.m_commodity).append(m_price, rhs.m_price)
             .isEquals();
-  }
-
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  public static class Builder {
-
-    private Commodity m_commodity_;
-    private double m_price_;
-
-    private Builder() {
-    }
-
-    public Builder setCommodity(Commodity commodity) {
-      m_commodity_ = commodity;
-      return this;
-    }
-
-    public Builder setPrice(double price) {
-      m_price_ = price;
-      return this;
-    }
-
-    public CommodityPrice build() {
-      return new CommodityPrice(m_commodity_, m_price_);
-    }
-
   }
 
 }

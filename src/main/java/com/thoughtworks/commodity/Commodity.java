@@ -7,7 +7,7 @@ public class Commodity {
 
   private final String m_id;
 
-  private Commodity(String id) {
+  public Commodity(String id) {
     m_id = id;
   }
 
@@ -29,28 +29,6 @@ public class Commodity {
 
     Commodity rhs = (Commodity) obj;
     return new EqualsBuilder().append(m_id, rhs.m_id).isEquals();
-  }
-
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  public static class Builder {
-
-    private String m_id_;
-
-    private Builder() {
-    }
-
-    public Builder setId(String id) {
-      m_id_ = id;
-      return this;
-    }
-
-    public Commodity build() {
-      return new Commodity(m_id_);
-    }
-
   }
 
 }

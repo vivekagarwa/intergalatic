@@ -46,8 +46,8 @@ public class CommodityPriceParser {
     }
     int unit = m_intergalaticStringToDecimalConverter.getVal(intergalaticString);
     double pricePerUnit = price / unit;
-    Commodity commodity = createCommodity(commodityName);
-    return createCommodityPrice(commodity, pricePerUnit);
+    Commodity commodity = new Commodity(commodityName);
+    return new CommodityPrice(commodity, pricePerUnit);
   }
 
   private Double convertToDouble(String priceString) {
@@ -59,18 +59,5 @@ public class CommodityPriceParser {
     } catch (NumberFormatException e) {
       return null;
     }
-  }
-
-  private Commodity createCommodity(String commodityName) {
-    Commodity.Builder builder = Commodity.newBuilder();
-    builder.setId(commodityName);
-    return builder.build();
-  }
-
-  private CommodityPrice createCommodityPrice(Commodity commodity, double pricePerUnit) {
-    CommodityPrice.Builder builder = CommodityPrice.newBuilder();
-    builder.setCommodity(commodity);
-    builder.setPrice(pricePerUnit);
-    return builder.build();
   }
 }

@@ -15,12 +15,11 @@ public class CommodityPriceQueryParser {
   private final CommodityLiterals m_commodityLiteral;
 
   @Inject
-  public CommodityPriceQueryParser(ParserProvider parserProvider,
-          CommodityLiterals commodityLiteral) {
+  public CommodityPriceQueryParser(ParserProvider parserProvider, CommodityLiterals commodityLiteral) {
     m_parserProvider = parserProvider;
     m_commodityLiteral = commodityLiteral;
   }
-  
+
   public CommodityPriceQuery getCommodityPriceQuery(String statement) {
     Parser parser = m_parserProvider.createNewParser(statement);
     if (!"how".equals(parser.getNextWord())) {
@@ -50,15 +49,6 @@ public class CommodityPriceQueryParser {
     if (!parser.isCompletlyCovered()) {
       return null;
     }
-    return createCommodityPriceQuery(intergalaticString, commodity);
+    return new CommodityPriceQuery(commodity, intergalaticString);
   }
-  
-  private CommodityPriceQuery createCommodityPriceQuery(IntergalaticString intergalaticString,
-          Commodity commodity) {
-    CommodityPriceQuery.Builder builder = CommodityPriceQuery.newBuilder();
-    builder.setCommodity(commodity);
-    builder.setUnits(intergalaticString);
-    return builder.build();
-  }
-
 }

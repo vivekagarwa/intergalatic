@@ -23,24 +23,20 @@ public class CommodityPriceQueryHandler {
   }
 
   public String handle(CommodityPriceQuery commodityPriceQuery) {
-    CommodityPriceResponse resp = createResponse(commodityPriceQuery);
-    String intergalaticString = m_intergalaticToStringConverter.getVal(resp.getUnits());
-    double totalPriceInDouble = resp.getTotalPrice();
+    String totalPrice = getTotalPrice(commodityPriceQuery);
+    String intergalaticString = m_intergalaticToStringConverter.getVal(commodityPriceQuery
+            .getUnits());
+    return String.format("%s %s is %s Credits", intergalaticString, commodityPriceQuery
+            .getCommodity().getId(), totalPrice);
+  }
+
+  private String getTotalPrice(CommodityPriceQuery commodityPriceQuery) {
+    double price = m_commodityPricing.getPrice(commodityPriceQuery.getCommodity());
+    int units = m_intergalaticStringToDecimalConverter.getVal(commodityPriceQuery.getUnits());
+    double totalPriceInDouble = price * units;
     int totalPriceInInteger = (int) totalPriceInDouble;
     String totalPrice = totalPriceInDouble == totalPriceInInteger ? String
             .valueOf(totalPriceInInteger) : String.valueOf(totalPriceInDouble);
-    return String.format("%s %s is %s Credits", intergalaticString, resp.getCommodity().getId(),
-            totalPrice);
+    return totalPrice;
   }
-
-  private CommodityPriceResponse createResponse(CommodityPriceQuery commodityPriceQuery) {
-    double price = m_commodityPricing.getPrice(commodityPriceQuery.getCommodity());
-    int units = m_intergalaticStringToDecimalConverter.getVal(commodityPriceQuery.getUnits());
-    CommodityPriceResponse.Builder builder = CommodityPriceResponse.newBuilder();
-    builder.setCommodity(commodityPriceQuery.getCommodity());
-    builder.setUnits(commodityPriceQuery.getUnits());
-    builder.setTotalPrice(price * units);
-    return builder.build();
-  }
-
 }

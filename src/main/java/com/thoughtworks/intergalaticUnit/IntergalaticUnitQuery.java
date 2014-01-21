@@ -7,14 +7,13 @@ public class IntergalaticUnitQuery {
 
   private final IntergalaticString m_units;
   
-  private IntergalaticUnitQuery(IntergalaticString units) {
+  public IntergalaticUnitQuery(IntergalaticString units) {
     m_units = units; 
   }
   
   public IntergalaticString getUnits() {
     return m_units;
   }
-  
 
   public int hashCode() {
     return new HashCodeBuilder(17, 31).append(m_units).toHashCode();
@@ -30,28 +29,6 @@ public class IntergalaticUnitQuery {
 
     IntergalaticUnitQuery rhs = (IntergalaticUnitQuery) obj;
     return new EqualsBuilder().append(m_units, rhs.m_units).isEquals();
-  }
-  
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-  
-  public static class Builder {
-    
-    private IntergalaticString m_units_;
-    
-    private Builder() {
-    }
-    
-    public Builder setUnits(IntergalaticString units) {
-      m_units_ = units;
-      return this;
-    }
-    
-    public IntergalaticUnitQuery build() {
-      return new IntergalaticUnitQuery(m_units_);
-    }
-    
   }
   
 }

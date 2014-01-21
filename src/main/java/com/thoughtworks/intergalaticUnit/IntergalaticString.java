@@ -11,12 +11,20 @@ public class IntergalaticString {
 
   private final List<IntergalaticLiteral> m_literalList;
 
-  private IntergalaticString(List<IntergalaticLiteral> literalList) {
+  public IntergalaticString(List<IntergalaticLiteral> literalList) {
     m_literalList = literalList;
   }
 
   public List<IntergalaticLiteral> getLiteralList() {
     return Lists.newArrayList(m_literalList);
+  }
+
+  public int getLiteralCount() {
+    return m_literalList.size();
+  }
+
+  public IntergalaticLiteral getLiteral(int index) {
+    return m_literalList.get(index);
   }
 
   public int hashCode() {
@@ -34,46 +42,4 @@ public class IntergalaticString {
     IntergalaticString rhs = (IntergalaticString) obj;
     return new EqualsBuilder().append(m_literalList, rhs.m_literalList).isEquals();
   }
-  
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  public int getLiteralCount() {
-    return m_literalList.size();
-  }
-
-  public IntergalaticLiteral getLiteral(int index) {
-    return m_literalList.get(index);
-  }
-
-  public static class Builder {
-
-    private List<IntergalaticLiteral> m_literalList_;
-
-    private Builder() {
-      m_literalList_ = Lists.newArrayList();
-    }
-
-    public Builder addLiteral(IntergalaticLiteral literal) {
-      m_literalList_.add(literal);
-      return this;
-    }
-
-    public Builder setLiteralList(List<IntergalaticLiteral> literalList) {
-      m_literalList_.clear();
-      addAllLiteral(literalList);
-      return this;
-    }
-
-    public void addAllLiteral(List<IntergalaticLiteral> literalList) {
-        m_literalList_.addAll(Lists.newArrayList(literalList));
-    }
-
-    public IntergalaticString build() {
-      return new IntergalaticString(m_literalList_);
-    }
-
-  }
-
 }

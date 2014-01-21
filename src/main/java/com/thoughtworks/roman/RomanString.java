@@ -11,7 +11,7 @@ public class RomanString {
 
   private final List<CompositeRomanLiteral> m_compositeList;
 
-  private RomanString(List<CompositeRomanLiteral> compositeList) {
+  public RomanString(List<CompositeRomanLiteral> compositeList) {
     m_compositeList = compositeList;
   }
 
@@ -33,39 +33,6 @@ public class RomanString {
 
     RomanString rhs = (RomanString) obj;
     return new EqualsBuilder().append(m_compositeList, rhs.m_compositeList).isEquals();
-  }
-
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  public static class Builder {
-
-    private List<CompositeRomanLiteral> m_compositeList_;
-
-    private Builder() {
-      m_compositeList_ = Lists.newArrayList();
-    }
-
-    public Builder addComposite(CompositeRomanLiteral composite) {
-      m_compositeList_.add(composite);
-      return this;
-    }
-
-    public Builder setCompositeList(List<CompositeRomanLiteral> compositeList) {
-      m_compositeList_.clear();
-      addAllComposite(compositeList);
-      return this;
-    }
-
-    public void addAllComposite(List<CompositeRomanLiteral> compositeList) {
-      compositeList.addAll(Lists.newArrayList(compositeList));
-    }
-
-    public RomanString build() {
-      return new RomanString(m_compositeList_);
-    }
-
   }
 
 }
